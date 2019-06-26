@@ -15,7 +15,7 @@ function newWord () {
     chosenWord= movieTitles[i].split("");
     console.log(chosenWord);
     blank= [];
-    for ( let j = 0; j <= movieTitles[i].length ; j++){
+    for ( let j = 0; j < movieTitles[i].length ; j++){
         blank.push("-");
         guessArea.textContent= blank.join(" ");
         console.log(i);
@@ -26,5 +26,14 @@ document.onkeyup = function(event){
     var r = event.key;
     mark = movieTitles[i].indexOf(r);
     console.log(mark);
+    if(mark > -1){
+    for (let pos = 0 ; pos < movieTitles[i].length; pos++){
+        if (r ===chosenWord[pos])
+        blank[pos]= r;
+        guessArea.textContent= "";
+        console.log (blank);
+        guessArea.textContent= blank.join(" ");
+    }
+    }
 };
 };
