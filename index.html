@@ -5,15 +5,26 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Page Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css" />
     
 </head>
 <body>
-    <div>
-        <h1> Hangman Game</h1>   
-        <h2 id ="guessText"></h2>
-        <h2 id ="guessArea"></h2>
-        <h2 id="attempts"></h2>
+    <div class= "content">
+        <div class= "title">
+            <h1> Hollywood Word Guess</h1>
+        </div>
+        <div class="screen">
+            <div class= "side-a">
+                <h1>Welcome</h1>
+                <p>Here you will have 10 chances to guess the movie im thinking of. Its a simple fill in the blank game. click on the screen when you're ready to start.</p>
+            </div>
+            <div class= "side-b">
+                <h2 id ="guessText"></h2>
+                <h2 id ="guessArea"></h2>
+                <h2 id="attempts"></h2>
+
+            </div>
+        </div>
     </div>
     <script src="assets/javascript/game.js"></script>
 </body>

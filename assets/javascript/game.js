@@ -2,19 +2,34 @@
 const movieTitles = [
     "star wars",
     "rush hour",
-    "princess bride"
+    "princess bride",
+    "office space",
+    "purple rain",
+    "usual suspects",
+    "top gun"
+    
 ];
 let chosenWord=[];
-const lettersGuessed= []; 
+let lettersGuessed= []; 
 let attempts = 10;
 let LetterCount = 0;
+let newGame = true;
 
 const guessArea= document.querySelector("#guessArea");
 const guessText = document.querySelector("#guessText");
 const attemptsText= document.querySelector('#attempts');
+const screen= document.querySelector('.screen');
+const sideA= document.querySelector('.side-a');
+const sideB= document.querySelector('.side-b');
 let i; 
 let blank =[];
-let mark=0;
+function initialize(){
+lettersGuessed=[];
+guessText.textContent= "Letters you have guessed: " + lettersGuessed.join(' ');
+attempts=10;
+attemptsText.textContent= "number of guesses left: " +attempts;
+}
+
 function newWord () {
     i = Math.floor(Math.random()* movieTitles.length);
     chosenWord= movieTitles[i].split("");
@@ -28,11 +43,28 @@ function newWord () {
         ;
     }
 }
+
+
 newWord();
+
+
+screen.addEventListener('click', function (){
+    sideA.style.transform='rotateY(-180deg)';
+    sideB.style.transform='rotateY(0deg)';
+    sideB.style.opacity= 1;
+
+
+});
 document.onkeyup = function(event){
     if (attempts > 0){
         var r = event.key;
-        attemptsText.textContent= attempts;
+        attemptsText.textContent= "number of guesses left: " +attempts;
+        if ((r >= "a") && (r <= "z")){
+            lettersGuessed.push(r);
+            guessText.textContent= "Letters you have guessed: " + lettersGuessed.join(' ');
+            // guessText.textContent= "";
+            // console.log(lettersGuessed);
+        }
         if((movieTitles[i].indexOf(r) > -1)&&(LetterCount > 0)){
             console.log('lc:' +LetterCount);
             for (let pos = 0 ; pos < movieTitles[i].length; pos++){
@@ -48,18 +80,23 @@ document.onkeyup = function(event){
         } else{
             attempts--;
         }
-        if ((r >= "a") && (r <= "z")){
-            lettersGuessed.push(r);
-            // guessText.textContent= "";
-            guessText.textContent= lettersGuessed.join(' ');
-            // console.log(lettersGuessed);
-        }
 
     } else {
         alert('you are out of tries');
+        newGame=confirm('want to play again?');
+        if(newGame){
+            initialize();
+           newWord();
+        };
+        
     }
     if(LetterCount===0){
         alert('you win');
+        newGame=confirm('want to play again?');
+        if(newGame){
+            initialize();
+            newWord();
+        };
     }
 }
 
