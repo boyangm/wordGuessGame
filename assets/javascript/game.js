@@ -58,13 +58,13 @@ screen.addEventListener('click', function (){
 document.onkeyup = function(event){
     if (attempts > 0){
         var r = event.key;
-        attemptsText.textContent= "number of guesses left: " +attempts;
         if ((r >= "a") && (r <= "z")){
             lettersGuessed.push(r);
             guessText.textContent= "Letters you have guessed: " + lettersGuessed.join(' ');
-            // guessText.textContent= "";
+            console.log(lettersGuessed);
             // console.log(lettersGuessed);
         }
+        attemptsText.textContent= "number of guesses left: " +attempts;
         if((movieTitles[i].indexOf(r) > -1)&&(LetterCount > 0)){
             console.log('lc:' +LetterCount);
             for (let pos = 0 ; pos < movieTitles[i].length; pos++){
